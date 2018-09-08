@@ -1,9 +1,15 @@
+
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
+//get env port
+const port = process.env.PORT || 3000;
+
+
 //to create the app
 var app = express();
+
 
 //to support partials
 hbs.registerPartials(__dirname + '/views/partials');
@@ -78,8 +84,9 @@ app.get('/bad', (req,res) => {
 
 
 //this is gonna bind the app to a port in our machine
-app.listen(3000, () => {
-  console.log('Server is up on port 3000');
+//for Heroku, added envir var
+app.listen(port, () => {
+  console.log(`Server is up on port ${port}`);
 });
 //this never stops, bc it is waiting for requests
 //open tab, localhost:3000
